@@ -1,0 +1,66 @@
+# Use the official OpenJDK image from the Docker Hub
+FROM openjdk:17-jdk-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the local HelloWorld.java file to the working directory
+COPY HelloWorld.java /app
+
+# Compile the Java program
+RUN javac HelloWorld.java
+
+# Run the compiled Java program
+CMD ["java", "HelloWorld"]
+
+--------------------------------------------------------
+
+docker build -t hello-world-java .
+
+docker run --rm hello-world-java
+
+-----------------------------------------------------------
+
+git init
+git add HelloWorld.java
+git add .
+git commit -m "Initial commit with HelloWorld.java"
+git remote add origin https://github.com/your-username/hello-world-java.git
+git push -u origin master
+git add HelloWorld.java
+git commit -m "Initial commit with HelloWorld.java"
+
+-----------------------------------------------
+Shell script 
+
+Create shell script program Add.sh
+
+#!/bin/bash
+
+# Check if exactly two arguments are provided
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 <number1> <number2>"
+    exit 1
+fi
+
+# Read arguments
+num1=$1
+num2=$2
+
+# Check if both arguments are numbers
+if ! [[ "$num1" =~ ^[0-9]+$ ]] || ! [[ "$num2" =~ ^[0-9]+$ ]]; then
+    echo "Error: Both arguments must be numbers."
+    exit 1
+fi
+
+# Perform addition
+sum=$((num1 + num2))
+
+# Print the result
+echo "The sum of $num1 and $num2 is $sum."
+------------------------------------------------------
+Open Git bash 
+copy path- cd /c/Users/rushi/OneDrive/Desktop/Devops-Practice
+./Add.sh 5 10
+
+
